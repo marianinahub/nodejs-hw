@@ -5,9 +5,7 @@ import { Note } from '../models/note.js';
 export const getAllNotes = async (req, res, next) => {
   try {
     const notes = await Note.find();
-
-console.log(notes);
-
+    
 res.status(200).json(notes);
   } catch (error) {
     next(error);
@@ -61,7 +59,7 @@ export const updateNote = async (req, res, next) => {
     const { noteId } = req.params;
 
     const note = await Note.findByIdAndUpdate(noteId, req.body, {
-      new: true,
+      returnDocument: 'after',
     });
 
     if (!note) {

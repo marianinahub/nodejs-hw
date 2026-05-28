@@ -10,7 +10,7 @@ import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
-import { router } from './routes/notesRoutes.js';
+import notesRouter from './routes/notesRoutes.js';
 
 const PORT = process.env.PORT || 3000;
 
@@ -25,7 +25,7 @@ const bootstrap = async () => {
 
   app.use(express.json());
 
-  app.use(router);
+  app.use(notesRouter);
 
   app.use(notFoundHandler);
 
