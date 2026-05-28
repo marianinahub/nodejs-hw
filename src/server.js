@@ -25,14 +25,14 @@ const bootstrap = async () => {
 
   app.use(cors());
 
-  app.use(express.json());
+ app.use(express.json());
 
-  app.use(notesRouter);
+app.use('/notes', notesRouter);
 
-  app.use(notFoundHandler);
+app.use(notFoundHandler);
 
-  app.use(errors());
-  app.use(errorHandler);
+app.use(errors());
+app.use(errorHandler);
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
