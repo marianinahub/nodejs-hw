@@ -1,12 +1,12 @@
 import createHttpError from 'http-errors';
 
 import {
-  createNote,
-  deleteNote,
-  getAllNotes,
-  getNoteById,
-  updateNote,
-} from '../services/notesServices.js';
+  createNote as createNoteService,
+  deleteNote as deleteNoteService,
+  getAllNotes as getAllNotesService,
+  getNoteById as getNoteByIdService,
+  updateNote as updateNoteService,
+} from '../services/notesServices.js';;
 
 export const getNotes = async (req, res) => {
   const {
