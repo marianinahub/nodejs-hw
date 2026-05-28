@@ -12,6 +12,8 @@ import { errorHandler } from './middleware/errorHandler.js';
 
 import notesRouter from './routes/notesRoutes.js';
 
+import { errors } from 'celebrate';
+
 const PORT = process.env.PORT || 3000;
 
 const bootstrap = async () => {
@@ -29,6 +31,7 @@ const bootstrap = async () => {
 
   app.use(notFoundHandler);
 
+  app.use(errors());
   app.use(errorHandler);
 
   app.listen(PORT, () => {

@@ -20,4 +20,6 @@ router.delete('/notes/:noteId', deleteNote);
 
 router.patch('/notes/:noteId', updateNote);
 
+router.get('/', celebrate(getAllNotesSchema), getNotesController);
+
 export default router;
