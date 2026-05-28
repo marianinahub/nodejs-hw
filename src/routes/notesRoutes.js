@@ -10,15 +10,16 @@ import {
 } from '../controllers/notesController.js';
 
 import {
-  getAllNotesSchema,
-  noteIdSchema,
-  createNoteSchema,
-  updateNoteSchema,
-} from '../validations/notesValidation.js';
+  getAllNotes,
+  getNoteById,
+  createNote,
+  updateNote,
+  deleteNote,
+} from '../controllers/notesController.js';
 
 const router = Router();
 
-router.get('/notes', celebrate(getAllNotesSchema), getNotes);
+router.get('/notes', celebrate(getAllNotesSchema), getAllNotes);
 
 router.get('/notes/:noteId', celebrate(noteIdSchema), getNoteById);
 
