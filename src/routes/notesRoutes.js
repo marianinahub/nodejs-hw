@@ -11,9 +11,13 @@ import {
 const router = Router();
 
 router.get('/', getNotesController);
+
 router.get('/:noteId', getNoteByIdController);
+
 router.post('/', createNoteController);
+
 router.delete('/:noteId', deleteNoteController);
+
 router.patch('/:noteId', updateNoteController);
 
 export default router;
