@@ -1,4 +1,5 @@
 import createHttpError from 'http-errors';
+
 import {
   createNote,
   deleteNote,
@@ -7,7 +8,7 @@ import {
   updateNote,
 } from '../services/notesServices.js';
 
-export const getNotesController = async (req, res) => {
+export const getNotes = async (req, res) => {
   const {
     page = 1,
     perPage = 10,
@@ -25,7 +26,7 @@ export const getNotesController = async (req, res) => {
   res.status(200).json(notesData);
 };
 
-export const getNoteByIdController = async (req, res) => {
+export const getNoteById = async (req, res) => {
   const { noteId } = req.params;
 
   const note = await getNoteById(noteId);
@@ -37,13 +38,13 @@ export const getNoteByIdController = async (req, res) => {
   res.status(200).json(note);
 };
 
-export const createNoteController = async (req, res) => {
+export const createNote = async (req, res) => {
   const note = await createNote(req.body);
 
   res.status(201).json(note);
 };
 
-export const deleteNoteController = async (req, res) => {
+export const deleteNote = async (req, res) => {
   const { noteId } = req.params;
 
   const note = await deleteNote(noteId);
@@ -52,10 +53,10 @@ export const deleteNoteController = async (req, res) => {
     throw createHttpError(404, 'Note not found');
   }
 
-  res.status(204).send();
+  res.status(200).json(note);
 };
 
-export const updateNoteController = async (req, res) => {
+export const updateNote = async (req, res) => {
   const { noteId } = req.params;
 
   const note = await updateNote(noteId, req.body);

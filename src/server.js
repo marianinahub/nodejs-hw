@@ -27,7 +27,7 @@ const bootstrap = async () => {
 
  app.use(express.json());
 
-app.use('/notes', notesRouter);
+app.use(notesRouter);
 
 app.use(notFoundHandler);
 
