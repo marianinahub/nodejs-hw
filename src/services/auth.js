@@ -1,3 +1,9 @@
+import jwt from 'jsonwebtoken';
+import fs from 'fs/promises';
+import path from 'path';
+import handlebars from 'handlebars';
+import { sendEmail } from '../utils/sendMail.js';
+
 import { v4 as uuid } from 'uuid';
 
 import { Session } from '../models/session.js';
