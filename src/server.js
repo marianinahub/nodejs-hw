@@ -1,16 +1,20 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
+import { errors } from 'celebrate';
 
 import { connectMongoDB } from './db/connectMongoDB.js';
-
-dotenv.config();
 
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
-import { router } from './routes/notesRoutes.js';
+import notesRouter from './routes/notesRoutes.js';
+import authRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js';
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,14 +25,23 @@ const bootstrap = async () => {
 
   app.use(logger);
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: true,
+      credentials: true,
+    }),
+  );
 
+  app.use(cookieParser());
   app.use(express.json());
 
-  app.use(router);
+app.use(authRouter);
+app.use(notesRouter);
+app.use(userRouter);
 
   app.use(notFoundHandler);
 
+  app.use(errors());
   app.use(errorHandler);
 
   app.listen(PORT, () => {
