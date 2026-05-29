@@ -216,10 +216,11 @@ export const requestResetEmail = async (
 
   try {
     await sendEmail({
-      to: user.email,
-      subject: 'Reset password',
-      html,
-    });
+  from: process.env.SMTP_FROM,
+  to: user.email,
+  subject: 'Reset password',
+  html,
+});
   } catch {
     throw createHttpError(
       500,
